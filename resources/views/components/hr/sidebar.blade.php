@@ -19,15 +19,45 @@
     }
 
     /* BRANDING */
-    .brand {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 0 5px 25px;
-        color: white;
-        text-decoration: none;
-        min-width: 0;
-    }
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 5px 25px;
+    color: white;
+    text-decoration: none;
+    width: 100%;
+    min-width: 0;
+    flex-shrink: 0;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    min-width: 0;
+    overflow: visible;
+}
+
+.brand h5 {
+    margin: 0;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 1.35;
+    letter-spacing: -0.4px;
+    white-space: normal;
+    overflow-wrap: normal;
+}
+
+.brand small {
+    display: block;
+    font-size: 8px;
+    color: #f3c6c6;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    margin-top: 3px;
+}
 
     .jollibee-logo {
         width: 48px;
@@ -216,7 +246,7 @@
     <!-- SYSTEM -->
     <div class="menu-label mt-4">SYSTEM</div>
 
-    <a href="#" class="nav-item-custom">
+    <a href="{{ route('hr.reports.index') }}" class="nav-item-custom">
         <i class="bi bi-bar-chart-fill"></i>
         <span class="nav-text">Reports & Analytics</span>
     </a>

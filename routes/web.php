@@ -8,6 +8,7 @@ use App\Http\Controllers\ApplicantAuthController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\HR\ApplicationManagementController;
 use App\Http\Controllers\HR\ResumeScreeningController;
+use App\Http\Controllers\ReportController;
 
 // Main page
 Route::get('/', function () {
@@ -47,6 +48,9 @@ Route::middleware(['auth', 'role:hr'])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');
+
+    Route::get('/reports', [ReportController::class, 'index'])
+    ->name('hr.reports.index');
 
     Route::resource('job-positions', JobPositionController::class)
         ->except(['show']);
