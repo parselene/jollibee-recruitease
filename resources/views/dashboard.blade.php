@@ -720,8 +720,6 @@
                         <i class="bi bi-briefcase-fill"></i>
                     </div>
 
-                    <i class="bi bi-three-dots text-muted"></i>
-
                 </div>
 
                 <div class="stat-number">
@@ -752,8 +750,6 @@
                     <div class="stat-icon icon-yellow">
                         <i class="bi bi-check-circle-fill"></i>
                     </div>
-
-                    <i class="bi bi-three-dots text-muted"></i>
 
                 </div>
 
@@ -786,8 +782,6 @@
                         <i class="bi bi-people-fill"></i>
                     </div>
 
-                    <i class="bi bi-three-dots text-muted"></i>
-
                 </div>
 
                 <div class="stat-number">
@@ -818,8 +812,6 @@
                     <div class="stat-icon icon-green">
                         <i class="bi bi-file-earmark-check-fill"></i>
                     </div>
-
-                    <i class="bi bi-three-dots text-muted"></i>
 
                 </div>
 
@@ -1043,7 +1035,7 @@
                 </div>
 
 
-                <div class="action-item">
+                <a href="{{ route('hr.reports.index') }}" class="action-item text-decoration-none">
 
                     <div class="action-icon icon-yellow">
                         <i class="bi bi-graph-up-arrow"></i>
@@ -1055,13 +1047,13 @@
                         </div>
 
                         <div class="action-description">
-                            Recruitment reports coming soon
+                            View recruitment reports and performance insights
                         </div>
                     </div>
 
                     <i class="bi bi-chevron-right action-arrow"></i>
 
-                </div>
+                </a>
 
             </div>
 

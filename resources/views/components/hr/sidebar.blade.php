@@ -246,7 +246,7 @@
     <!-- SYSTEM -->
     <div class="menu-label mt-4">SYSTEM</div>
 
-    <a href="{{ route('hr.reports.index') }}" class="nav-item-custom">
+    <a href="{{ route('hr.reports.index') }}" class="nav-item-custom {{ request()->routeIs('hr.reports.*') ? 'active' : '' }}">
         <i class="bi bi-bar-chart-fill"></i>
         <span class="nav-text">Reports & Analytics</span>
     </a>
