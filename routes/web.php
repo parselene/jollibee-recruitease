@@ -102,3 +102,32 @@ Route::middleware(['auth', 'role:applicant'])->prefix('applicant')->group(functi
     Route::post('/jobs/{jobPosition}/apply', [ApplicationController::class, 'store'])
         ->name('applicant.apply.store');
 });
+
+
+Route::get('/python-diagnostic', function () {
+
+    $python = config('services.python.path');
+
+    $process = new \Symfony\Component\Process\Process([
+        $python,
+        '-c',
+        'import os; print("HOME:", os.path.expanduser("~")); from sentence_transformers import SentenceTransformer; model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2"); print("MODEL LOAD OK")'
+    ]);
+
+    $process->setEnv([
+        'USERPROFILE' => 'C:\\Users\\admin',
+        'HOME' => 'C:\\Users\\admin',
+        'HOMEDRIVE' => 'C:',
+        'HOMEPATH' => '\\Users\\admin',
+        'HF_HOME' => 'C:\\Users\\admin\\.cache\\huggingface',
+    ]);
+
+    $process->setTimeout(180);
+    $process->run();
+
+    return response()->json([
+        'exit_code' => $process->getExitCode(),
+        'output' => $process->getOutput(),
+        'error' => $process->getErrorOutput(),
+    ]);
+});

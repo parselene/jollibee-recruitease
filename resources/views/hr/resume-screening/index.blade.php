@@ -32,114 +32,6 @@
 
         a { text-decoration: none; }
 
-        .sidebar {
-            width: 255px;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background: linear-gradient(180deg, #B5121B, #920D16);
-            color: white;
-            padding: 27px 18px;
-            display: flex;
-            flex-direction: column;
-            z-index: 1000;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 0 12px 35px;
-            color: white;
-        }
-
-        .brand-icon {
-            width: 43px;
-            height: 43px;
-            background: var(--accent);
-            color: var(--primary-dark);
-            border-radius: 13px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            font-weight: 800;
-        }
-
-        .brand h5 {
-            margin: 0;
-            font-weight: 800;
-            font-size: 19px;
-        }
-
-        .brand small {
-            font-size: 9px;
-            color: #f3c6c6;
-            letter-spacing: 1.2px;
-        }
-
-        .menu-label {
-            color: #f0b9b9;
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            padding: 0 13px;
-            margin: 15px 0 12px;
-        }
-
-        .nav-item-custom {
-            display: flex;
-            align-items: center;
-            gap: 13px;
-            padding: 12px 14px;
-            color: #f1c9c9;
-            font-size: 13px;
-            border-radius: 9px;
-            margin-bottom: 5px;
-        }
-
-        .nav-item-custom:hover,
-        .nav-item-custom.active {
-            background: rgba(255,255,255,.15);
-            color: white;
-        }
-
-        .nav-item-custom.active {
-            border-left: 4px solid var(--accent);
-            font-weight: 700;
-        }
-
-        .nav-item-custom i { font-size: 17px; }
-
-        .sidebar-bottom {
-            margin-top: auto;
-            border-top: 1px solid rgba(255,255,255,.15);
-            padding-top: 20px;
-        }
-
-        .profile {
-            display: flex;
-            align-items: center;
-            gap: 11px;
-            padding: 10px;
-        }
-
-        .profile-avatar {
-            width: 38px;
-            height: 38px;
-            background: #f8d8a0;
-            color: #6b3510;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-        }
-
-        .profile-name { font-size: 12px; font-weight: 700; }
-        .profile-role { font-size: 10px; color: #f1c9c9; }
-
         .main-content {
             margin-left: 255px;
             min-height: 100vh;
@@ -148,7 +40,7 @@
 
         .page-heading h4 {
             font-weight: 800;
-            font-size: 24px;
+            font-size: 25px;
             margin-bottom: 5px;
         }
 
@@ -165,7 +57,7 @@
             margin-bottom: 22px;
         }
 
-        .stat-card, .content-panel {
+        .stat-card, .content-panel, .job-card {
             background: white;
             border: 1px solid var(--border);
             border-radius: 16px;
@@ -195,141 +87,109 @@
 
         .stat-label {
             color: var(--muted);
-            font-size: 11px;
-            font-weight: 600;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .5px;
         }
 
-        .content-panel { padding: 24px; }
-
-        .panel-title {
-            font-size: 16px;
+        .section-title {
+            font-size: 17px;
             font-weight: 800;
         }
 
-        .panel-subtitle {
+        .section-subtitle {
             color: var(--muted);
             font-size: 11px;
         }
 
-        .filter-select {
-            max-width: 280px;
-            font-size: 12px;
-            border-color: var(--border);
-            border-radius: 9px;
+        .job-card {
+            padding: 23px;
+            height: 100%;
+            transition: .2s ease;
+            display: flex;
+            flex-direction: column;
         }
 
-        .table {
-            font-size: 12px;
-            vertical-align: middle;
+        .job-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 13px 30px rgba(100,30,20,.10);
+            border-color: #EBC1BC;
         }
 
-        .table thead th {
-            color: #9599a6;
-            font-size: 10px;
-            letter-spacing: .6px;
-            border-bottom: 1px solid #eee;
-            padding: 14px 12px;
-            white-space: nowrap;
+        .job-icon {
+            width: 46px;
+            height: 46px;
+            background: #FFF0F0;
+            color: var(--primary);
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+            flex-shrink: 0;
         }
 
-        .table tbody td {
-            padding: 17px 12px;
-            border-color: #f1f1f2;
-        }
-
-        .candidate-name {
+        .job-title {
+            font-size: 17px;
             font-weight: 800;
-            color: var(--text);
+            margin-top: 19px;
+            margin-bottom: 4px;
         }
 
-        .candidate-email {
+        .job-department {
             color: var(--muted);
+            font-size: 11px;
+        }
+
+        .applicant-count {
+            font-size: 30px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .job-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 16px 0;
+            margin-top: 12px;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .metric-label {
             font-size: 10px;
+            color: var(--muted);
+        }
+
+        .metric-value {
+            font-size: 14px;
+            font-weight: 800;
             margin-top: 3px;
         }
 
-        .score-number {
-            font-size: 15px;
+        .view-candidates {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 20px;
+            color: var(--primary);
+            font-size: 12px;
             font-weight: 800;
-            color: var(--primary);
         }
 
-        .score-bar {
-            width: 115px;
-            height: 6px;
-            background: #f1eeee;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-top: 6px;
-        }
-
-        .score-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #D71920, #FF8B57);
-            border-radius: 10px;
-        }
-
-        .skill-badge {
-            display: inline-block;
-            background: #FFF0F0;
-            color: #B5121B;
-            padding: 5px 9px;
-            border-radius: 20px;
-            font-size: 10px;
-            font-weight: 700;
-            margin: 2px;
-        }
-
-        .matched-badge {
-    display: inline-block;
-    background: #EAF7ED;
-    color: #27834A;
-    padding: 5px 9px;
-    border-radius: 20px;
-    font-size: 10px;
-    font-weight: 700;
-    margin: 2px;
-}
-
-.missing-badge {
-    display: inline-block;
-    background: #FFF0F0;
-    color: #D71920;
-    padding: 5px 9px;
-    border-radius: 20px;
-    font-size: 10px;
-    font-weight: 700;
-    margin: 2px;
-}
-
-.skill-empty {
-    color: var(--muted);
-    font-size: 11px;
-}
-
-.skill-column {
-    min-width: 160px;
-    max-width: 230px;
-}
-
-        .download-btn {
-            background: #FFF0F0;
-            color: var(--primary);
-            border-radius: 8px;
-            padding: 7px 10px;
-            font-size: 11px;
-            font-weight: 700;
-            display: inline-block;
-        }
-
-        .download-btn:hover {
-            background: var(--primary);
-            color: white;
+        .view-candidates:hover {
+            color: var(--primary-dark);
         }
 
         .empty-state {
             padding: 55px 20px;
             text-align: center;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(100,30,20,.05);
         }
 
         .empty-state i {
@@ -348,6 +208,13 @@
             font-size: 12px;
         }
 
+        .status-badge {
+            font-size: 10px;
+            font-weight: 700;
+            border-radius: 20px;
+            padding: 6px 10px;
+        }
+
         .footer {
             text-align: center;
             color: #a3a5ad;
@@ -356,27 +223,6 @@
         }
 
         @media(max-width: 991px) {
-            .sidebar {
-                width: 75px;
-                padding: 25px 10px;
-            }
-
-            .brand {
-                justify-content: center;
-                padding: 0 0 35px;
-            }
-
-            .brand-text, .menu-label, .nav-text, .profile-details {
-                display: none;
-            }
-
-            .nav-item-custom {
-                justify-content: center;
-                padding: 13px;
-            }
-
-            .profile { justify-content: center; }
-
             .main-content {
                 margin-left: 75px;
                 padding: 25px;
@@ -385,7 +231,6 @@
 
         @media(max-width: 576px) {
             .main-content { padding: 20px 12px; }
-            .content-panel { padding: 15px; }
         }
     </style>
 </head>
@@ -400,15 +245,16 @@
         <i class="bi bi-arrow-left me-1"></i> Back to Dashboard
     </a>
 
+    <!-- PAGE HEADING -->
     <div class="page-heading mb-4">
         <h4>AI Resume Screening</h4>
         <p>
-            Analyze resumes, evaluate job-skill compatibility, and identify
-            the strongest candidate matches.
+            Evaluate applicant resumes, review job compatibility,
+            and compare candidates based on their assessment scores.
         </p>
     </div>
 
-    <!-- Screening Statistics -->
+    <!-- OVERALL STATISTICS -->
     <div class="row g-3 mb-4">
 
         <div class="col-md-6 col-xl-3">
@@ -455,210 +301,132 @@
 
     </div>
 
-    <!-- Candidate Ranking -->
-    <section class="content-panel">
+    <!-- JOB POSITION OVERVIEW -->
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
 
-        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
-            <div>
-                <h5 class="panel-title mb-1">
-                    <i class="bi bi-bar-chart-line-fill text-danger me-2"></i>
-                    Candidate Ranking
-                </h5>
-                <p class="panel-subtitle mb-0">
-                    Candidates are grouped by job position and sorted by match score.
-                </p>
-            </div>
+        <div>
+            <h5 class="section-title mb-1">
+                <i class="bi bi-grid-fill text-danger me-2"></i>
+                Job Position Screening
+            </h5>
 
-            <form action="{{ route('hr.resume-screening.index') }}"
-                  method="GET"
-                  class="d-flex gap-2 align-items-center">
-
-                <select name="job_position_id"
-                        class="form-select filter-select"
-                        onchange="this.form.submit()">
-
-                    <option value="">All Job Positions</option>
-
-                    @foreach($jobPositions as $job)
-                        <option value="{{ $job->id }}"
-                            {{ (string) $selectedJob === (string) $job->id ? 'selected' : '' }}>
-                            {{ $job->title }}
-                        </option>
-                    @endforeach
-
-                </select>
-
-                @if($selectedJob)
-                    <a href="{{ route('hr.resume-screening.index') }}"
-                       class="btn btn-outline-secondary btn-sm">
-                        Clear
-                    </a>
-                @endif
-
-            </form>
+            <p class="section-subtitle mb-0">
+                Select a job position to view its ranked applicants and screening results.
+            </p>
         </div>
 
-        <div class="table-responsive">
-            <table class="table">
+        <span class="text-muted small">
+            {{ $jobPositions->count() }} job position(s)
+        </span>
 
-<thead>
-    <tr>
-        <th>APPLICANT</th>
-        <th>JOB POSITION</th>
-        <th>MATCH SCORE</th>
-        <th>EXTRACTED SKILLS</th>
-        <th>MATCHED SKILLS</th>
-        <th>MISSING SKILLS</th>
-        <th>RESUME</th>
-    </tr>
-</thead>
+    </div>
 
-<tbody>
+    @if($jobPositions->count() > 0)
 
-    @forelse($applications as $application)
+        <div class="row g-3">
 
-        <tr>
+            @foreach($jobPositions as $job)
 
-            {{-- APPLICANT --}}
-            <td>
-                <div class="candidate-name">
-                    {{ $application->applicant?->full_name ?? 'Applicant unavailable' }}
-                </div>
-                <div class="candidate-email">
-                    {{ $application->applicant?->email ?? 'No email available' }}
-                </div>
-            </td>
+                <div class="col-md-6 col-xl-4">
 
-            {{-- JOB POSITION --}}
-            <td>
-                <div class="fw-bold">
-                    {{ $application->jobPosition?->title ?? 'Position unavailable' }}
-                </div>
-                <small class="text-muted">
-                    {{ $application->jobPosition?->department ?? 'No department' }}
-                </small>
-            </td>
+                    <a href="{{ route('hr.resume-screening.index', ['job_position_id' => $job->id]) }}"
+                       class="text-decoration-none text-reset">
 
-            {{-- MATCH SCORE --}}
-            <td>
-                @if($application->resume?->match_score !== null)
+                        <div class="job-card">
 
-                    @php
-                        $score = (float) $application->resume->match_score;
-                    @endphp
+                            <div class="d-flex justify-content-between align-items-start">
 
-                    <div class="score-number">
-                        {{ number_format($score, 2) }}%
-                    </div>
+                                <div class="job-icon">
+                                    <i class="bi bi-briefcase-fill"></i>
+                                </div>
 
-                    <div class="score-bar">
-                        <div class="score-fill"
-                             style="width: {{ min(100, max(0, $score)) }}%;">
+                                @if($job->is_active)
+                                    <span class="status-badge" style="background:#EAF7ED;color:#27834A;">
+                                        Active
+                                    </span>
+                                @else
+                                    <span class="status-badge" style="background:#F1F1F1;color:#777;">
+                                        Inactive
+                                    </span>
+                                @endif
+
+                            </div>
+
+                            <div class="job-title">
+                                {{ $job->title }}
+                            </div>
+
+                            <div class="job-department">
+                                <i class="bi bi-building me-1"></i>
+                                {{ $job->department ?: 'No department specified' }}
+                            </div>
+
+                            <div class="mt-3">
+                                <div class="applicant-count">
+                                    {{ $job->applicant_count }}
+                                </div>
+
+                                <div class="metric-label">
+                                    APPLICANTS WITH RESUMES
+                                </div>
+                            </div>
+
+                            <div class="job-metrics">
+
+                                <div>
+                                    <div class="metric-value">
+                                        {{ $job->screened_count }}
+                                    </div>
+                                    <div class="metric-label">Screened</div>
+                                </div>
+
+                                <div>
+                                    <div class="metric-value">
+                                        {{ $job->pending_count }}
+                                    </div>
+                                    <div class="metric-label">Pending</div>
+                                </div>
+
+                                <div>
+                                    <div class="metric-value" style="color:#27834A;">
+                                        {{ $job->strong_match_count }}
+                                    </div>
+                                    <div class="metric-label">Strong Matches</div>
+                                </div>
+
+                                <div>
+                                    <div class="metric-value">
+                                        {{ number_format((float) ($job->average_match_score ?? 0), 2) }}%
+                                    </div>
+                                    <div class="metric-label">Average Score</div>
+                                </div>
+
+                            </div>
+
+                            <div class="view-candidates">
+                                <span>View Candidate Rankings</span>
+                                <i class="bi bi-arrow-right"></i>
+                            </div>
+
                         </div>
-                    </div>
 
-                @else
-                    <span class="text-muted">Not yet scored</span>
-                @endif
-            </td>
-
-            {{-- EXTRACTED SKILLS --}}
-            <td class="skill-column">
-                @if(!empty($application->resume?->extracted_skills))
-
-                    @foreach($application->resume->extracted_skills as $skill)
-                        <span class="skill-badge">
-                            {{ $skill }}
-                        </span>
-                    @endforeach
-
-                @else
-                    <span class="skill-empty">No skills detected</span>
-                @endif
-            </td>
-
-            {{-- MATCHED SKILLS --}}
-            <td class="skill-column">
-                @if(!is_null($application->resume?->matched_skills)
-                    && count($application->resume->matched_skills) > 0)
-
-                    @foreach($application->resume->matched_skills as $skill)
-                        <span class="matched-badge">
-                            <i class="bi bi-check-circle-fill me-1"></i>
-                            {{ $skill }}
-                        </span>
-                    @endforeach
-
-                @elseif($application->resume?->match_score !== null)
-                    <span class="skill-empty">No matched skills</span>
-                @else
-                    <span class="skill-empty">Not yet screened</span>
-                @endif
-            </td>
-
-            {{-- MISSING SKILLS --}}
-            <td class="skill-column">
-                @if(!is_null($application->resume?->missing_skills)
-                    && count($application->resume->missing_skills) > 0)
-
-                    @foreach($application->resume->missing_skills as $skill)
-                        <span class="missing-badge">
-                            <i class="bi bi-x-circle-fill me-1"></i>
-                            {{ $skill }}
-                        </span>
-                    @endforeach
-
-                @elseif($application->resume?->match_score !== null)
-                    <span class="skill-empty">No missing skills</span>
-                @else
-                    <span class="skill-empty">Not yet screened</span>
-                @endif
-            </td>
-
-            {{-- RESUME --}}
-            <td>
-                @if($application->resume)
-
-                    <a href="{{ route('hr.applications.resume.download', $application->id) }}"
-                       class="download-btn">
-                        <i class="bi bi-download me-1"></i>
-                        View Resume
                     </a>
 
-                @else
-                    <span class="text-muted">Unavailable</span>
-                @endif
-            </td>
-
-        </tr>
-
-    @empty
-
-        <tr>
-            <td colspan="7">
-                <div class="empty-state">
-                    <i class="bi bi-search"></i>
-                    <h5>No Screening Results</h5>
-                    <p>
-                        Uploaded resumes and their screening results
-                        will appear here.
-                    </p>
                 </div>
-            </td>
-        </tr>
 
-    @endforelse
+            @endforeach
 
-</tbody>
-
-            </table>
         </div>
 
-        <div class="d-flex justify-content-end">
-            {{ $applications->links() }}
+    @else
+
+        <div class="empty-state">
+            <i class="bi bi-briefcase"></i>
+            <h5>No Job Positions Found</h5>
+            <p>Create a job position first to start reviewing applicant resumes.</p>
         </div>
 
-    </section>
+    @endif
 
     <footer class="footer">
         © {{ date('Y') }} RecruitEase ·

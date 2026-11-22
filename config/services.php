@@ -36,7 +36,10 @@ return [
     ],
 
     'python' => [
-    'path' => env('PYTHON_PATH', 'python'),
-],
+        'path' => env(
+            'PYTHON_PATH',
+            base_path('.venv/Scripts/python.exe')
+        ),
+    ],
 
 ];

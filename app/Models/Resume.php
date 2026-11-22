@@ -20,14 +20,18 @@ class Resume extends Model
         'matched_skills',
         'missing_skills',
         'match_score',
+        'skills_score',
+        'semantic_score',
         'status',
     ];
 
     protected $casts = [
         'match_score' => 'decimal:2',
+        'skills_score' => 'decimal:2',
+        'semantic_score' => 'decimal:2',
         'extracted_skills' => 'array',
         'matched_skills' => 'array',
-'missing_skills' => 'array',
+        'missing_skills' => 'array',
     ];
 
     public function application(): BelongsTo

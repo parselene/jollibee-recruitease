@@ -1,24 +1,31 @@
 
 import sys
-import re
 import json
+import re
 import unicodedata
 
 
 def preprocess_resume_text(raw_text):
     try:
-        # Normalize special Unicode characters
+        # Normalize Unicode characters.
         text = unicodedata.normalize("NFKC", raw_text)
 
-        # Convert all text to lowercase
-        text = text.lower()
+        # Normalize line endings.
+        text = text.replace("\r\n", "\n").replace("\r", "\n")
 
-        # Preserve useful characters in technical skills:
-        # Examples: C++, C#, .NET, Node.js
-        text = re.sub(r"[^\w\s+#./@'-]", " ", text)
+        # Remove null bytes and unwanted control characters.
+        text = "".join(
+            char for char in text
+            if char == "\n" or char == "\t"
+            or unicodedata.category(char)[0] != "C"
+        )
 
-        # Remove unnecessary extra spaces and line breaks
-        text = re.sub(r"\s+", " ", text).strip()
+        # Preserve line breaks because they help retain
+        # resume sections and employment history.
+        text = re.sub(r"[ \t]+", " ", text)
+        text = re.sub(r"\n{3,}", "\n\n", text)
+
+        text = text.strip()
 
         if not text:
             return {
@@ -26,9 +33,14 @@ def preprocess_resume_text(raw_text):
                 "message": "No text available for preprocessing."
             }
 
+        # Create a separate lowercase version for
+        # dictionary-based skill extraction.
+        cleaned_text = text.lower()
+
         return {
             "success": True,
-            "cleaned_text": text
+            "cleaned_text": cleaned_text,
+            "original_formatted_text": text
         }
 
     except Exception as error:
