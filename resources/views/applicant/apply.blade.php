@@ -232,6 +232,127 @@
             padding: 30px 0 10px;
         }
 
+
+/* AI ANALYSIS LOADING SCREEN */
+.ai-loading-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(35, 20, 20, 0.78);
+    backdrop-filter: blur(6px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.ai-loading-overlay.active {
+    display: flex;
+}
+
+.ai-loading-card {
+    background: white;
+    width: 100%;
+    max-width: 430px;
+    padding: 38px 30px;
+    border-radius: 22px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    animation: loadingAppear 0.3s ease-out;
+}
+
+.ai-loading-icon {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 22px;
+    border-radius: 22px;
+    background: #FFF0F0;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    animation: aiPulse 1.5s ease-in-out infinite;
+}
+
+.ai-loading-card h4 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 9px;
+}
+
+.ai-loading-description {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.ai-progress {
+    height: 7px;
+    background: #F3E8E5;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.ai-progress-bar {
+    height: 100%;
+    width: 35%;
+    border-radius: 20px;
+    background: linear-gradient(
+        90deg,
+        var(--primary),
+        var(--accent)
+    );
+    animation: progressMove 1.5s ease-in-out infinite;
+}
+
+.ai-loading-note {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+@keyframes aiPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(215, 25, 32, 0.15);
+    }
+    50% {
+        transform: scale(1.08);
+        box-shadow: 0 0 0 12px rgba(215, 25, 32, 0);
+    }
+}
+
+@keyframes progressMove {
+    0% {
+        transform: translateX(-110%);
+    }
+    100% {
+        transform: translateX(300%);
+    }
+}
+
+@keyframes loadingAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ai-loading-icon,
+    .ai-progress-bar,
+    .ai-loading-card {
+        animation: none;
+    }
+}
+
+
         @media(max-width: 576px) {
             .application-card {
                 padding: 22px 17px;
@@ -377,6 +498,38 @@
 
             </form>
 
+
+<!-- AI ANALYSIS LOADING SCREEN -->
+<div class="ai-loading-overlay" id="aiLoadingOverlay">
+
+    <div class="ai-loading-card">
+
+        <div class="ai-loading-icon">
+            <i class="bi bi-stars"></i>
+        </div>
+
+        <h4>AI is Analyzing Your Resume</h4>
+
+        <p class="ai-loading-description">
+            Your application is being processed by RecruitEase.
+            Our AI system is examining your resume and comparing
+            your qualifications with the job requirements.
+        </p>
+
+        <div class="ai-progress">
+            <div class="ai-progress-bar"></div>
+        </div>
+
+        <p class="ai-loading-note mb-0">
+            <i class="bi bi-shield-check me-1"></i>
+            Please wait. Do not close or refresh this page.
+        </p>
+
+    </div>
+
+</div>
+
+
         </div>
 
         <footer class="footer">
@@ -386,5 +539,31 @@
 
     </main>
 
+
+<script>
+    const applicationForm = document.querySelector('form');
+    const loadingOverlay = document.getElementById('aiLoadingOverlay');
+    const resumeInput = document.getElementById('resume');
+    const submitButton = applicationForm.querySelector('button[type="submit"]');
+
+    applicationForm.addEventListener('submit', function (event) {
+
+        // Only show the loading screen when a file is selected.
+        if (!resumeInput.files.length) {
+            return;
+        }
+
+        // Prevent accidental repeated submissions.
+        submitButton.disabled = true;
+        submitButton.innerHTML =
+            '<span class="spinner-border spinner-border-sm me-2"></span>Processing...';
+
+        // Show the AI analysis loading screen.
+        loadingOverlay.classList.add('active');
+
+    });
+</script>
 </body>
 </html>
+
+
