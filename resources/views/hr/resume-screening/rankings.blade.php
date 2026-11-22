@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +21,9 @@
             --border: #F0E5DC;
         }
 
-        * { box-sizing: border-box; }
+        * {
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'DM Sans', sans-serif;
@@ -30,13 +31,15 @@
             color: var(--text);
         }
 
-        a { text-decoration: none; }
-
-        .main-content {
-            margin-left: 255px;
-            min-height: 100vh;
-            padding: 35px 38px;
+        a {
+            text-decoration: none;
         }
+
+.main-content {
+    margin-left: 255px;
+    min-height: 100vh;
+    padding: 35px 38px;
+}
 
         .page-heading h4 {
             font-weight: 800;
@@ -57,7 +60,12 @@
             margin-bottom: 22px;
         }
 
-        .stat-card, .content-panel {
+        .back-link:hover {
+            color: var(--primary-dark);
+        }
+
+        .stat-card,
+        .content-panel {
             background: white;
             border: 1px solid var(--border);
             border-radius: 16px;
@@ -65,24 +73,24 @@
         }
 
         .stat-card {
-            padding: 21px;
+            padding: 20px;
             height: 100%;
         }
 
         .stat-icon {
-            width: 43px;
-            height: 43px;
+            width: 42px;
+            height: 42px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 19px;
+            font-size: 18px;
         }
 
         .stat-number {
-            font-size: 27px;
+            font-size: 26px;
             font-weight: 800;
-            margin-top: 15px;
+            margin-top: 14px;
         }
 
         .stat-label {
@@ -97,15 +105,15 @@
         }
 
         .job-icon {
-            width: 46px;
-            height: 46px;
+            width: 45px;
+            height: 45px;
             background: #FFF0F0;
             color: var(--primary);
-            border-radius: 13px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 21px;
+            font-size: 20px;
             flex-shrink: 0;
         }
 
@@ -119,23 +127,62 @@
             font-size: 11px;
         }
 
-        .metric-label {
-            font-size: 10px;
-            color: var(--muted);
-        }
-
-        .metric-value {
-            font-size: 14px;
-            font-weight: 800;
-            margin-top: 3px;
-        }
-
         .status-badge {
             font-size: 10px;
             font-weight: 700;
             border-radius: 20px;
-            padding: 6px 10px;
+            padding: 7px 11px;
+            background: #FFF6DD;
+            color: #9A6A00;
         }
+
+        /* AI SCREENING SUMMARY */
+
+        .ai-summary {
+            background: linear-gradient(110deg, #FFF0F0, #FFF9F0);
+            border: 1px solid #F3D9D5;
+            border-radius: 14px;
+            padding: 17px 20px;
+        }
+
+        .ai-summary-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 11px;
+            background: white;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            flex-shrink: 0;
+        }
+
+        .ai-summary h6 {
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .ai-summary p {
+            font-size: 11px;
+            color: var(--muted);
+            margin-bottom: 0;
+            line-height: 1.6;
+        }
+
+        .weight-label {
+            background: white;
+            border: 1px solid #F3D9D5;
+            color: var(--primary);
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* RANKING TABLE */
 
         .table {
             font-size: 12px;
@@ -146,15 +193,28 @@
         .table thead th {
             color: #9599a6;
             font-size: 10px;
-            letter-spacing: .6px;
+            letter-spacing: .5px;
             border-bottom: 1px solid #eee;
             padding: 14px 12px;
             white-space: nowrap;
         }
 
         .table tbody td {
-            padding: 17px 12px;
+            padding: 16px 12px;
             border-color: #f1f1f2;
+        }
+
+        .rank-number {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #FFF6DD;
+            color: #9A6A00;
+            border-radius: 9px;
+            font-size: 11px;
+            font-weight: 800;
         }
 
         .candidate-name {
@@ -175,12 +235,13 @@
         }
 
         .score-bar {
-            width: 105px;
+            width: 110px;
+            max-width: 100%;
             height: 6px;
             background: #f1eeee;
             border-radius: 10px;
             overflow: hidden;
-            margin-top: 6px;
+            margin-top: 7px;
         }
 
         .score-fill {
@@ -189,7 +250,130 @@
             border-radius: 10px;
         }
 
-        .skill-badge, .matched-badge, .missing-badge {
+        .skills-score {
+            font-weight: 800;
+            color: var(--text);
+        }
+
+        .pending-label {
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .action-group {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            flex-wrap: wrap;
+        }
+
+        .download-btn,
+        .analysis-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            border-radius: 8px;
+            padding: 8px 11px;
+            font-size: 10px;
+            font-weight: 700;
+            white-space: nowrap;
+            transition: .2s;
+        }
+
+        .download-btn {
+            background: #FFF0F0;
+            color: var(--primary);
+            border: 1px solid #F3D9D5;
+        }
+
+        .download-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .analysis-btn {
+            background: white;
+            color: #806000;
+            border: 1px solid #F0E1B9;
+        }
+
+        .analysis-btn:hover {
+            background: #FFF6DD;
+            color: #806000;
+        }
+
+        /* EXPANDED AI ANALYSIS */
+
+        .analysis-details {
+            background: #FFFCF8;
+            padding: 22px;
+            border-top: 1px solid var(--border);
+        }
+
+        .analysis-heading {
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .analysis-card {
+            height: 100%;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            padding: 16px;
+        }
+
+        .analysis-card-title {
+            font-size: 11px;
+            color: var(--muted);
+            font-weight: 700;
+            margin-bottom: 9px;
+        }
+
+        .analysis-card-score {
+            font-size: 22px;
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .analysis-progress {
+            width: 100%;
+            height: 7px;
+            background: #f1eeee;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .analysis-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #D71920, #FF8B57);
+            border-radius: 10px;
+        }
+
+        .analysis-description {
+            font-size: 10px;
+            color: var(--muted);
+            margin-top: 9px;
+            line-height: 1.5;
+        }
+
+        .skill-section {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            padding: 16px;
+            height: 100%;
+        }
+
+        .skill-section h6 {
+            font-size: 11px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .skill-badge {
             display: inline-block;
             padding: 5px 9px;
             border-radius: 20px;
@@ -198,9 +382,9 @@
             margin: 2px;
         }
 
-        .skill-badge {
-            background: #FFF0F0;
-            color: #B5121B;
+        .extracted-badge {
+            background: #F2F0EE;
+            color: #625C57;
         }
 
         .matched-badge {
@@ -215,29 +399,19 @@
 
         .skill-empty {
             color: var(--muted);
-            font-size: 11px;
+            font-size: 10px;
         }
 
-        .skill-column {
-            min-width: 160px;
-            max-width: 230px;
+        .analysis-note {
+            background: #F7F5F2;
+            padding: 11px 13px;
+            border-radius: 9px;
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.6;
         }
 
-        .download-btn {
-            background: #FFF0F0;
-            color: var(--primary);
-            border-radius: 8px;
-            padding: 8px 11px;
-            font-size: 11px;
-            font-weight: 700;
-            display: inline-block;
-            white-space: nowrap;
-        }
-
-        .download-btn:hover {
-            background: var(--primary);
-            color: white;
-        }
+        /* EMPTY STATE AND FOOTER */
 
         .empty-state {
             padding: 55px 20px;
@@ -279,8 +453,21 @@
         }
 
         @media(max-width: 576px) {
-            .main-content { padding: 20px 12px; }
-            .content-panel { padding: 15px; }
+            .main-content {
+                padding: 20px 12px;
+            }
+
+            .content-panel {
+                padding: 15px;
+            }
+
+            .stat-card {
+                padding: 15px;
+            }
+
+            .analysis-details {
+                padding: 15px;
+            }
         }
     </style>
 </head>
@@ -291,21 +478,22 @@
 
 <main class="main-content">
 
-    <!-- BACK TO JOB POSITIONS -->
     <a href="{{ route('hr.resume-screening.index') }}" class="back-link">
-        <i class="bi bi-arrow-left me-1"></i> Back to Job Positions
+        <i class="bi bi-arrow-left me-1"></i>
+        Back to Job Positions
     </a>
 
     <!-- PAGE HEADING -->
+
     <div class="page-heading mb-4">
         <h4>Candidate Rankings</h4>
         <p>
-            Review applicant assessments, compare resume compatibility,
-            and identify candidates based on their screening results.
+            Compare applicant compatibility and review AI-assisted resume screening results.
         </p>
     </div>
 
-    <!-- OVERALL STATISTICS FOR SELECTED JOB -->
+    <!-- SUMMARY STATISTICS -->
+
     <div class="row g-3 mb-4">
 
         <div class="col-md-6 col-xl-3">
@@ -352,13 +540,12 @@
 
     </div>
 
-    <!-- SELECTED JOB POSITION -->
-    <div class="content-panel mb-4">
+    <!-- SELECTED JOB -->
 
-        <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+    <div class="content-panel mb-4">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
 
             <div class="d-flex align-items-center gap-3">
-
                 <div class="job-icon">
                     <i class="bi bi-briefcase-fill"></i>
                 </div>
@@ -373,64 +560,59 @@
                         {{ $selectedJobPosition->department ?: 'No department specified' }}
                     </p>
                 </div>
-
             </div>
 
-            <span class="status-badge" style="background:#FFF6DD;color:#9A6A00;">
+            <span class="status-badge">
                 <i class="bi bi-bar-chart-fill me-1"></i>
                 Candidate Ranking
             </span>
 
         </div>
+    </div>
 
-        <hr style="border-color:var(--border);">
+    <!-- AI SCREENING EXPLANATION -->
 
-        <div class="row g-3">
+    <div class="ai-summary mb-4">
+        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
 
-            <div class="col-6 col-md-3">
-                <div class="metric-label">APPLICANTS</div>
-                <div class="metric-value">
-                    {{ $selectedJobPosition->applicant_count }}
+            <div class="d-flex align-items-center gap-3">
+                <div class="ai-summary-icon">
+                    <i class="bi bi-robot"></i>
+                </div>
+
+                <div>
+                    <h6>AI-Powered Resume Assessment</h6>
+                    <p>
+                        RecruitEase extracts resume information, identifies relevant skills,
+                        and uses a pretrained language model to compare resume content
+                        with the selected job description.
+                    </p>
                 </div>
             </div>
 
-            <div class="col-6 col-md-3">
-                <div class="metric-label">SCREENED</div>
-                <div class="metric-value">
-                    {{ $selectedJobPosition->screened_count }}
-                </div>
-            </div>
-
-            <div class="col-6 col-md-3">
-                <div class="metric-label">STRONG MATCHES</div>
-                <div class="metric-value" style="color:#27834A;">
-                    {{ $selectedJobPosition->strong_match_count }}
-                </div>
-            </div>
-
-            <div class="col-6 col-md-3">
-                <div class="metric-label">AVERAGE MATCH SCORE</div>
-                <div class="metric-value" style="color:var(--primary);">
-                    {{ number_format((float) ($selectedJobPosition->average_match_score ?? 0), 2) }}%
-                </div>
+            <div class="d-flex gap-2 flex-wrap">
+                <span class="weight-label">50% Skills Matching</span>
+                <span class="weight-label">50% Semantic Similarity</span>
             </div>
 
         </div>
-
     </div>
 
-    <!-- CANDIDATE RANKING TABLE -->
+    <!-- RANKED CANDIDATES -->
+
     <section class="content-panel">
 
-        <div class="mb-4">
-            <h5 class="panel-title mb-1">
-                <i class="bi bi-trophy-fill text-warning me-2"></i>
-                Ranked Candidates
-            </h5>
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
+            <div>
+                <h5 class="panel-title mb-1">
+                    <i class="bi bi-trophy-fill text-warning me-2"></i>
+                    Ranked Candidates
+                </h5>
 
-            <p class="panel-subtitle mb-0">
-                Candidates are arranged from highest to lowest overall match score.
-            </p>
+                <p class="panel-subtitle mb-0">
+                    Applicants are ordered by their overall resume match score.
+                </p>
+            </div>
         </div>
 
         @if($applications->count() > 0)
@@ -444,12 +626,8 @@
                             <th>RANK</th>
                             <th>APPLICANT</th>
                             <th>OVERALL MATCH</th>
-                            <th>SKILLS SCORE</th>
-                            <th>SEMANTIC SCORE</th>
-                            <th>EXTRACTED SKILLS</th>
-                            <th>MATCHED SKILLS</th>
-                            <th>MISSING SKILLS</th>
-                            <th>RESUME</th>
+                            <th>SKILLS MATCH</th>
+                            <th>ACTIONS</th>
                         </tr>
                     </thead>
 
@@ -457,12 +635,33 @@
 
                         @foreach($applications as $index => $application)
 
+                            @php
+                                $resume = $application->resume;
+                                $score = $resume?->match_score !== null
+                                    ? (float) $resume->match_score
+                                    : null;
+
+                                $skillsScore = $resume?->skills_score !== null
+                                    ? (float) $resume->skills_score
+                                    : null;
+
+                                $semanticScore = $resume?->semantic_score !== null
+                                    ? (float) $resume->semantic_score
+                                    : null;
+
+                                $extractedSkills = $resume?->extracted_skills ?? [];
+                                $matchedSkills = $resume?->matched_skills ?? [];
+                                $missingSkills = $resume?->missing_skills ?? [];
+                            @endphp
+
+                            <!-- CANDIDATE ROW -->
+
                             <tr>
 
                                 <td>
-                                    <span class="fw-bold">
+                                    <div class="rank-number">
                                         #{{ $applications->firstItem() + $index }}
-                                    </span>
+                                    </div>
                                 </td>
 
                                 <td>
@@ -476,11 +675,7 @@
                                 </td>
 
                                 <td>
-                                    @if($application->resume?->match_score !== null)
-
-                                        @php
-                                            $score = (float) $application->resume->match_score;
-                                        @endphp
+                                    @if($score !== null)
 
                                         <div class="score-number">
                                             {{ number_format($score, 2) }}%
@@ -488,95 +683,234 @@
 
                                         <div class="score-bar">
                                             <div class="score-fill"
-                                                 style="width:{{ min(100, max(0, $score)) }}%;">
+                                                style="width:{{ min(100, max(0, $score)) }}%;">
                                             </div>
                                         </div>
 
                                     @else
-                                        <span class="text-muted">Not yet scored</span>
+                                        <span class="pending-label">Pending screening</span>
                                     @endif
                                 </td>
 
                                 <td>
-                                    @if($application->resume?->skills_score !== null)
-                                        <strong>
-                                            {{ number_format((float) $application->resume->skills_score, 2) }}%
-                                        </strong>
+                                    @if($skillsScore !== null)
+                                        <span class="skills-score">
+                                            {{ number_format($skillsScore, 2) }}%
+                                        </span>
                                     @else
-                                        <span class="text-muted">Pending</span>
+                                        <span class="pending-label">Pending</span>
                                     @endif
                                 </td>
 
                                 <td>
-                                    @if($application->resume?->semantic_score !== null)
-                                        <strong>
-                                            {{ number_format((float) $application->resume->semantic_score, 2) }}%
-                                        </strong>
-                                    @else
-                                        <span class="text-muted">Pending</span>
-                                    @endif
+                                    <div class="action-group">
+
+                                        @if($resume)
+                                            <a href="{{ route('hr.applications.resume.download', $application->id) }}"
+                                                class="download-btn">
+                                                <i class="bi bi-file-earmark-pdf"></i>
+                                                Resume
+                                            </a>
+                                        @else
+                                            <span class="pending-label">No resume</span>
+                                        @endif
+
+                                        <button
+                                            class="analysis-btn"
+                                            type="button"
+                                            data-bs-toggle="collapse"
+                                            data-bs-target="#analysis{{ $application->id }}"
+                                            aria-expanded="false"
+                                            aria-controls="analysis{{ $application->id }}">
+
+                                            <i class="bi bi-stars"></i>
+                                            View Analysis
+                                        </button>
+
+                                    </div>
                                 </td>
 
-                                <td class="skill-column">
-                                    @if(!empty($application->resume?->extracted_skills))
+                            </tr>
 
-                                        @foreach($application->resume->extracted_skills as $skill)
-                                            <span class="skill-badge">{{ $skill }}</span>
-                                        @endforeach
+                            <!-- EXPANDABLE AI ANALYSIS -->
 
-                                    @else
-                                        <span class="skill-empty">No skills detected</span>
-                                    @endif
+                            <tr>
+                                <td colspan="5" class="p-0">
+
+                                    <div class="collapse" id="analysis{{ $application->id }}">
+
+                                        <div class="analysis-details">
+
+                                            <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+
+                                                <h6 class="analysis-heading mb-0">
+                                                    <i class="bi bi-robot me-2" style="color:var(--primary);"></i>
+                                                    Screening Analysis
+                                                </h6>
+
+                                                <span class="pending-label">
+                                                    Applicant:
+                                                    {{ $application->applicant?->full_name ?? 'Unavailable' }}
+                                                </span>
+
+                                            </div>
+
+                                            @if($resume && $score !== null)
+
+                                                <!-- SCORE BREAKDOWN -->
+
+                                                <div class="row g-3 mb-3">
+
+                                                    <div class="col-md-6">
+                                                        <div class="analysis-card">
+
+                                                            <div class="analysis-card-title">
+                                                                SKILLS MATCHING
+                                                            </div>
+
+                                                            <div class="analysis-card-score">
+                                                                {{ $skillsScore !== null ? number_format($skillsScore, 2) . '%' : 'Pending' }}
+                                                            </div>
+
+                                                            @if($skillsScore !== null)
+                                                                <div class="analysis-progress">
+                                                                    <div class="analysis-progress-fill"
+                                                                        style="width:{{ min(100, max(0, $skillsScore)) }}%;">
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+
+                                                            <p class="analysis-description">
+                                                                Evaluates how many of the job's required skills
+                                                                were identified in the applicant's resume.
+                                                            </p>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="analysis-card">
+
+                                                            <div class="analysis-card-title">
+                                                                SEMANTIC SIMILARITY
+                                                            </div>
+
+                                                            <div class="analysis-card-score">
+                                                                {{ $semanticScore !== null ? number_format($semanticScore, 2) . '%' : 'Pending' }}
+                                                            </div>
+
+                                                            @if($semanticScore !== null)
+                                                                <div class="analysis-progress">
+                                                                    <div class="analysis-progress-fill"
+                                                                        style="width:{{ min(100, max(0, $semanticScore)) }}%;">
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+
+                                                            <p class="analysis-description">
+                                                                Uses sentence embeddings to measure contextual
+                                                                similarity between the resume and job description.
+                                                            </p>
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <!-- SKILL FINDINGS -->
+
+                                                <div class="row g-3">
+
+                                                    <div class="col-md-4">
+                                                        <div class="skill-section">
+
+                                                            <h6>
+                                                                <i class="bi bi-search me-1"></i>
+                                                                Identified Skills
+                                                            </h6>
+
+                                                            @forelse($extractedSkills as $skill)
+                                                                <span class="skill-badge extracted-badge">
+                                                                    {{ $skill }}
+                                                                </span>
+                                                            @empty
+                                                                <span class="skill-empty">
+                                                                    No skills identified.
+                                                                </span>
+                                                            @endforelse
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="skill-section">
+
+                                                            <h6 style="color:#27834A;">
+                                                                <i class="bi bi-check-circle-fill me-1"></i>
+                                                                Matching Requirements
+                                                            </h6>
+
+                                                            @forelse($matchedSkills as $skill)
+                                                                <span class="skill-badge matched-badge">
+                                                                    {{ $skill }}
+                                                                </span>
+                                                            @empty
+                                                                <span class="skill-empty">
+                                                                    No matching skills recorded.
+                                                                </span>
+                                                            @endforelse
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="skill-section">
+
+                                                            <h6 style="color:var(--primary);">
+                                                                <i class="bi bi-exclamation-circle me-1"></i>
+                                                                Missing Requirements
+                                                            </h6>
+
+                                                            @forelse($missingSkills as $skill)
+                                                                <span class="skill-badge missing-badge">
+                                                                    {{ $skill }}
+                                                                </span>
+                                                            @empty
+                                                                <span class="skill-empty">
+                                                                    No missing skills recorded.
+                                                                </span>
+                                                            @endforelse
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="analysis-note mt-3">
+                                                    <i class="bi bi-info-circle me-1"></i>
+                                                    These results are AI-assisted screening indicators.
+                                                    Semantic similarity measures textual relevance, not
+                                                    verified qualifications or guaranteed job performance.
+                                                    HR should review the original resume before making
+                                                    recruitment decisions.
+                                                </div>
+
+                                            @else
+
+                                                <div class="text-center py-4">
+                                                    <i class="bi bi-hourglass-split fs-3 text-muted"></i>
+                                                    <p class="pending-label mt-2 mb-0">
+                                                        This resume has not completed AI screening yet.
+                                                    </p>
+                                                </div>
+
+                                            @endif
+
+                                        </div>
+
+                                    </div>
+
                                 </td>
-
-                                <td class="skill-column">
-                                    @if(!empty($application->resume?->matched_skills))
-
-                                        @foreach($application->resume->matched_skills as $skill)
-                                            <span class="matched-badge">
-                                                <i class="bi bi-check-circle-fill me-1"></i>
-                                                {{ $skill }}
-                                            </span>
-                                        @endforeach
-
-                                    @elseif($application->resume?->match_score !== null)
-                                        <span class="skill-empty">No matched skills</span>
-                                    @else
-                                        <span class="skill-empty">Not yet screened</span>
-                                    @endif
-                                </td>
-
-                                <td class="skill-column">
-                                    @if(!empty($application->resume?->missing_skills))
-
-                                        @foreach($application->resume->missing_skills as $skill)
-                                            <span class="missing-badge">
-                                                <i class="bi bi-x-circle-fill me-1"></i>
-                                                {{ $skill }}
-                                            </span>
-                                        @endforeach
-
-                                    @elseif($application->resume?->match_score !== null)
-                                        <span class="skill-empty">No missing skills</span>
-                                    @else
-                                        <span class="skill-empty">Not yet screened</span>
-                                    @endif
-                                </td>
-
-                                <td>
-                                    @if($application->resume)
-
-                                        <a href="{{ route('hr.applications.resume.download', $application->id) }}"
-                                           class="download-btn">
-                                            <i class="bi bi-download me-1"></i>
-                                            View Resume
-                                        </a>
-
-                                    @else
-                                        <span class="text-muted">Unavailable</span>
-                                    @endif
-                                </td>
-
                             </tr>
 
                         @endforeach
@@ -588,6 +922,7 @@
             </div>
 
             <!-- PAGINATION -->
+
             <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mt-4">
 
                 <small class="text-muted">
@@ -620,6 +955,8 @@
     </footer>
 
 </main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

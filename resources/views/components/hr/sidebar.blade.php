@@ -18,7 +18,7 @@
         overflow-x: hidden;
     }
 
-    /* BRANDING */
+/* BRANDING */
 .brand {
     display: flex;
     align-items: center;
@@ -37,7 +37,6 @@
     justify-content: center;
     flex: 1;
     min-width: 0;
-    overflow: visible;
 }
 
 .brand h5 {
@@ -47,7 +46,6 @@
     line-height: 1.35;
     letter-spacing: -0.4px;
     white-space: normal;
-    overflow-wrap: normal;
 }
 
 .brand small {
@@ -59,33 +57,15 @@
     margin-top: 3px;
 }
 
-    .jollibee-logo {
-        width: 48px;
-        height: 48px;
-        object-fit: contain;
-        background: white;
-        border-radius: 12px;
-        padding: 3px;
-        flex-shrink: 0;
-    }
-
-    .brand-text {
-        min-width: 0;
-    }
-
-    .brand h5 {
-        margin: 0;
-        font-weight: 800;
-        font-size: 17px;
-        white-space: nowrap;
-    }
-
-    .brand small {
-        font-size: 8px;
-        color: #f3c6c6;
-        letter-spacing: 1px;
-        white-space: nowrap;
-    }
+.jollibee-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    background: white;
+    border-radius: 12px;
+    padding: 3px;
+    flex-shrink: 0;
+}
 
     /* MENU */
     .menu-label {
@@ -164,6 +144,29 @@
         font-size: 10px;
         color: #f1c9c9;
     }
+
+    /* SMOOTH PAGE TRANSITION */
+@keyframes pageFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.main-content {
+    animation: pageFadeIn 0.35s ease-out;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .main-content {
+        animation: none;
+    }
+}
 
     /* RESPONSIVE */
     @media(max-width: 991px) {
