@@ -186,12 +186,12 @@ class ApplicationController extends Controller
                             ]);
 
                             $matchProcess->setEnv([
-    'USERPROFILE' => 'C:\\Users\\admin',
-    'HOME' => 'C:\\Users\\admin',
-    'HOMEDRIVE' => 'C:',
-    'HOMEPATH' => '\\Users\\admin',
-    'HF_HOME' => 'C:\\Users\\admin\\.cache\\huggingface',
-]);
+                                'USERPROFILE' => 'C:\\Users\\admin',
+                                'HOME' => 'C:\\Users\\admin',
+                                'HOMEDRIVE' => 'C:',
+                                'HOMEPATH' => '\\Users\\admin',
+                                'HF_HOME' => 'C:\\Users\\admin\\.cache\\huggingface',
+                            ]);
 
                             $matchProcess->setInput(json_encode([
                                 'resume_text' => $resumeTextForMatching,

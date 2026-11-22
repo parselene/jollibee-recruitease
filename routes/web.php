@@ -9,6 +9,7 @@ use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\HR\ApplicationManagementController;
 use App\Http\Controllers\HR\ResumeScreeningController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\HR\ResumeUploadController;
 
 // Main page
 Route::get('/', function () {
@@ -69,22 +70,28 @@ Route::middleware(['auth', 'role:hr'])->group(function () {
     )->name('hr.applications.status.update');
 
     
-Route::get(
-    '/applications/{application}/schedule',
-    [ApplicationManagementController::class, 'createSchedule']
-)->name('hr.applications.schedule.create');
+    Route::get(
+        '/applications/{application}/schedule',
+        [ApplicationManagementController::class, 'createSchedule']
+    )->name('hr.applications.schedule.create');
 
-Route::post(
-    '/applications/{application}/schedule',
-    [ApplicationManagementController::class, 'storeSchedule']
-)->name('hr.applications.schedule.store');
+    Route::post(
+        '/applications/{application}/schedule',
+        [ApplicationManagementController::class, 'storeSchedule']
+    )->name('hr.applications.schedule.store');
 
-Route::get('/resume-screening', [ResumeScreeningController::class, 'index'])
-    ->name('hr.resume-screening.index');
+    Route::get('/resume-screening', [ResumeScreeningController::class, 'index'])
+        ->name('hr.resume-screening.index');
 
 
     Route::post('/logout', [LoginController::class, 'destroy'])
         ->name('logout');
+
+    Route::get('/resume-upload', [ResumeUploadController::class, 'create'])
+        ->name('hr.resume-upload.create');
+
+    Route::post('/resume-upload', [ResumeUploadController::class, 'store'])
+        ->name('hr.resume-upload.store');
 });
 
 // Applicant protected pages

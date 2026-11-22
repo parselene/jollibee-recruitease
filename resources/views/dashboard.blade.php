@@ -525,15 +525,24 @@
             color: var(--primary);
         }
 
-        .action-icon {
-            width: 39px;
-            height: 39px;
-            border-radius: 11px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 17px;
-        }
+.action-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    flex-shrink: 0;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.action-icon i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
 
         .action-title {
             font-size: 12px;
@@ -1013,11 +1022,11 @@
 
                 </a>
 
+                <a href="{{ route('hr.resume-upload.create') }}"
+                class="action-item text-decoration-none">
 
-                <div class="action-item">
-
-                    <div class="action-icon icon-green">
-                        <i class="bi bi-file-earmark-arrow-up"></i>
+                    <div class="action-icon icon-yellow">
+                        <i class="bi bi-cloud-upload"></i>
                     </div>
 
                     <div>
@@ -1026,19 +1035,19 @@
                         </div>
 
                         <div class="action-description">
-                            Resume upload coming soon
+                            Upload and screen applicant resumes
                         </div>
                     </div>
 
                     <i class="bi bi-chevron-right action-arrow"></i>
 
-                </div>
+                </a>
 
 
                 <a href="{{ route('hr.reports.index') }}" class="action-item text-decoration-none">
 
                     <div class="action-icon icon-yellow">
-                        <i class="bi bi-graph-up-arrow"></i>
+                        <i class="bi bi-graph-up-arrow analytics-icon"></i>
                     </div>
 
                     <div>

@@ -220,7 +220,7 @@
     <div class="menu-label">MAIN MENU</div>
 
     <a href="{{ route('dashboard') }}"
-       class="nav-item-custom {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+       class="nav-item-custom {{ request()->routeIs('dashboard', 'hr.resume-upload.*') ? 'active' : '' }}">
         <i class="bi bi-grid-1x2-fill"></i>
         <span class="nav-text">Dashboard</span>
     </a>
