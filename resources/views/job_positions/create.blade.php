@@ -424,7 +424,7 @@
                            name="title"
                            class="form-control"
                            value="{{ old('title') }}"
-                           placeholder="e.g. Software Developer"
+                           placeholder="e.g. Service Crew"
                            required>
                 </div>
 
@@ -435,7 +435,7 @@
                            name="department"
                            class="form-control"
                            value="{{ old('department') }}"
-                           placeholder="e.g. Information Technology">
+                           placeholder="e.g. Operations, Marketing, IT">
                 </div>
 
                 <div class="col-12 mb-3">
@@ -453,7 +453,7 @@
                     <textarea name="required_skills"
                               class="form-control"
                               rows="3"
-                              placeholder="Python, PHP, Laravel, MySQL"
+                              placeholder="Customer Service, Communication, Teamwork"
                               required>{{ old('required_skills') }}</textarea>
 
                     <div class="form-text">
