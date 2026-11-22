@@ -46,7 +46,7 @@ class ApplicantAuthController extends Controller
         });
 
         return redirect()
-            ->route('applicant.register')
+            ->route('login')
             ->with('success', 'Your account has been created successfully.');
     }
 

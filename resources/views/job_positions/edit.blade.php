@@ -268,18 +268,6 @@
             color: var(--muted);
         }
 
-        .status-box {
-            background: #FFF9F0;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 17px;
-        }
-
-        .form-check-input:checked {
-            background-color: var(--primary);
-            border-color: var(--primary);
-        }
-
         .info-note {
             background: #FFF5D9;
             border-radius: 9px;
@@ -468,7 +456,7 @@
                     </h5>
 
                     <p class="section-description">
-                        Manage the application deadline and vacancy availability.
+                        Set the deadline for accepting applications.
                     </p>
 
                     <div class="row g-3">
@@ -483,34 +471,13 @@
                             <div class="form-text">Applications will close automatically when this date and time is reached.</div>
                         </div>
 
-                        <div class="col-md-6">
-                            <label class="form-label">Vacancy Status</label>
 
-                            <div class="status-box">
-                                <div class="form-check">
-                                    <input type="checkbox"
-                                           name="is_active"
-                                           value="1"
-                                           class="form-check-input"
-                                           id="is_active"
-                                           @checked(old('is_active', $jobPosition->is_active))>
-
-                                    <label class="form-check-label fw-bold small" for="is_active">
-                                        Active vacancy
-                                    </label>
-                                </div>
-
-                                <div class="form-text mt-2">
-                                    Uncheck this option to manually deactivate the job, even if its deadline has not passed.
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
 
                     <div class="info-note mt-3">
                         <i class="bi bi-info-circle me-1"></i>
-                        The system determines whether a vacancy is Open or Closed based on its deadline. HR can also manually deactivate a vacancy using the checkbox above.
+                        The system automatically determines whether a vacancy is Open or Closed based on its application deadline.
                     </div>
 
                 </section>

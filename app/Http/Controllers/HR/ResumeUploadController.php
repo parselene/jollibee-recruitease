@@ -314,12 +314,25 @@ class ResumeUploadController extends Controller
         ));
 
         if ($useModelEnvironment) {
+            $userProfile = getenv('USERPROFILE')
+                ?: getenv('HOME')
+                ?: storage_path('app/python-home');
+
+            $homeDrive = getenv('HOMEDRIVE') ?: substr($userProfile, 0, 2);
+            $homePath = getenv('HOMEPATH') ?: substr($userProfile, 2);
+
             $process->setEnv([
-                'USERPROFILE' => 'C:\\Users\\admin',
-                'HOME' => 'C:\\Users\\admin',
-                'HOMEDRIVE' => 'C:',
-                'HOMEPATH' => '\\Users\\admin',
-                'HF_HOME' => 'C:\\Users\\admin\\.cache\\huggingface',
+                'SystemRoot' => getenv('SystemRoot') ?: 'C:\\Windows',
+                'WINDIR' => getenv('WINDIR') ?: 'C:\\Windows',
+                'PATH' => getenv('PATH') ?: 'C:\\Windows\\system32;C:\\Windows',
+                'TEMP' => getenv('TEMP') ?: 'C:\\Windows\\Temp',
+                'TMP' => getenv('TMP') ?: 'C:\\Windows\\Temp',
+                'USERPROFILE' => $userProfile,
+                'HOME' => $userProfile,
+                'HOMEDRIVE' => $homeDrive,
+                'HOMEPATH' => $homePath,
+                'HF_HOME' => $userProfile . DIRECTORY_SEPARATOR . '.cache'
+                    . DIRECTORY_SEPARATOR . 'huggingface',
             ]);
         }
 

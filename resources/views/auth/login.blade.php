@@ -640,6 +640,23 @@
             </div>
         @endif
 
+        <!-- SUCCESS MESSAGE -->
+
+        @if(session('success'))
+            <div style="
+                background: #EAF8EF;
+                border: 1px solid #C5E8D0;
+                color: #217A43;
+                padding: 13px;
+                border-radius: 9px;
+                font-size: 12px;
+                margin-bottom: 20px;
+            ">
+                <i class="bi bi-check-circle-fill me-1"></i>
+                {{ session('success') }}
+            </div>
+        @endif
+
 
         <!-- LOGIN FORM -->
 
