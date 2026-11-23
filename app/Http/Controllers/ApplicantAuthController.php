@@ -98,9 +98,8 @@ public function dashboard(Request $request)
         ->latest('applied_at')
         ->get();
 
-    // Get only job positions that are active and still accepting applications.
-    $availableJobs = JobPosition::where('is_active', true)
-        ->whereNotNull('application_deadline')
+    // Get only job positions whose application deadlines have not passed.
+    $availableJobs = JobPosition::whereNotNull('application_deadline')
         ->where('application_deadline', '>', now())
         ->latest()
         ->get();

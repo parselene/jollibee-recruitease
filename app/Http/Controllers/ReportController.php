@@ -86,36 +86,36 @@ class ReportController extends Controller
             ->whereHas('interviewSchedule')
             ->count();
 
-        // Vacancy statistics
-        $jobQuery = JobPosition::query();
+            // Vacancy statistics
+            $jobQuery = JobPosition::query();
 
-        if ($selectedJob) {
-            $jobQuery->where('job_positions.id', $selectedJob);
-        }
+            if ($selectedJob) {
+                $jobQuery->where('job_positions.id', $selectedJob);
+            }
 
-        $totalJobs = (clone $jobQuery)->count();
+            $totalJobs = (clone $jobQuery)->count();
 
-        $openJobs = (clone $jobQuery)
-            ->where('job_positions.is_active', true)
-            ->whereNotNull('job_positions.application_deadline')
-            ->where('job_positions.application_deadline', '>=', now())
-            ->count();
+            // Open jobs: application deadline has not passed.
+            $openJobs = (clone $jobQuery)
+                ->whereNotNull('job_positions.application_deadline')
+                ->where('job_positions.application_deadline', '>', now())
+                ->count();
 
-        $closedJobs = (clone $jobQuery)
-            ->where('job_positions.is_active', true)
-            ->where(function ($query) {
-                $query->whereNull('job_positions.application_deadline')
-                    ->orWhere(
-                        'job_positions.application_deadline',
-                        '<',
-                        now()
-                    );
-            })
-            ->count();
+            // Closed jobs: application deadline has passed or is missing.
+            $closedJobs = (clone $jobQuery)
+                ->where(function ($query) {
+                    $query->whereNull('job_positions.application_deadline')
+                        ->orWhere(
+                            'job_positions.application_deadline',
+                            '<=',
+                            now()
+                        );
+                })
+                ->count();
 
-        $inactiveJobs = (clone $jobQuery)
-            ->where('job_positions.is_active', false)
-            ->count();
+            // No separate inactive category because deadline determines status.
+            $inactiveJobs = 0;
+
 
         // Application status distribution
         $statusLabels = [

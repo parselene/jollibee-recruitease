@@ -339,16 +339,11 @@
                                 <div class="job-icon">
                                     <i class="bi bi-briefcase-fill"></i>
                                 </div>
-
-                                @if($job->is_active)
-                                    <span class="status-badge" style="background:#EAF7ED;color:#27834A;">
-                                        Active
-                                    </span>
-                                @else
-                                    <span class="status-badge" style="background:#F1F1F1;color:#777;">
-                                        Inactive
-                                    </span>
-                                @endif
+                                    @if($job->application_deadline && $job->application_deadline->isFuture())
+                                        <span class="status-badge status-active">Active</span>
+                                    @else
+                                        <span class="status-badge status-inactive">Closed</span>
+                                    @endif
 
                             </div>
 

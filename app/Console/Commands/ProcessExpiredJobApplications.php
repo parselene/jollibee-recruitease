@@ -21,7 +21,6 @@ class ProcessExpiredJobApplications extends Command
         $this->info('Starting automatic recruitment processing...');
 
         $jobs = DB::table('job_positions')
-            ->where('is_active', true)
             ->whereNotNull('application_deadline')
             ->where('application_deadline', '<=', now())
             ->whereNull('recruitment_processed_at')

@@ -13,7 +13,6 @@ class JobPosition extends Model
         'description',
         'required_skills',
         'min_experience_years',
-        'is_active',
 
         // Recruitment settings
         'application_deadline',
@@ -29,7 +28,6 @@ class JobPosition extends Model
 
     protected $casts = [
         'required_skills' => 'array',
-        'is_active' => 'boolean',
         'application_deadline' => 'datetime',
         'interview_date' => 'date',
     ];

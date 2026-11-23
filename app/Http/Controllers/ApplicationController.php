@@ -18,12 +18,10 @@ class ApplicationController extends Controller
     private function isAcceptingApplications(JobPosition $jobPosition): bool
     {
         return JobPosition::whereKey($jobPosition->id)
-            ->where('is_active', true)
             ->whereNotNull('application_deadline')
             ->where('application_deadline', '>', now())
             ->exists();
     }
-
     public function create(JobPosition $jobPosition)
     {
         if (!$this->isAcceptingApplications($jobPosition)) {
@@ -283,7 +281,6 @@ class ApplicationController extends Controller
             ) {
                 // Lock and recheck the vacancy before saving.
                 $openJob = JobPosition::whereKey($jobPosition->id)
-                    ->where('is_active', true)
                     ->whereNotNull('application_deadline')
                     ->where('application_deadline', '>', now())
                     ->lockForUpdate()

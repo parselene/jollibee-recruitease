@@ -910,18 +910,10 @@
 
                                     <td>
 
-                                        @if($job->is_active)
-
-                                            <span class="status-badge">
-                                                Active
-                                            </span>
-
+                                        @if($job->application_deadline && $job->application_deadline->isFuture())
+                                            <span class="status-badge status-active">Active</span>
                                         @else
-
-                                            <span class="status-badge status-inactive">
-                                                Inactive
-                                            </span>
-
+                                            <span class="status-badge status-inactive">Closed</span>
                                         @endif
 
                                     </td>

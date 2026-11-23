@@ -26,7 +26,8 @@ class ResumeUploadController extends Controller
      */
     public function create()
     {
-        $jobPositions = JobPosition::where('is_active', true)
+        $jobPositions = JobPosition::whereNotNull('application_deadline')
+            ->where('application_deadline', '>', now())
             ->orderBy('title')
             ->get();
 
@@ -53,12 +54,13 @@ class ResumeUploadController extends Controller
         ]);
 
         $jobPosition = JobPosition::whereKey($validated['job_position_id'])
-            ->where('is_active', true)
+            ->whereNotNull('application_deadline')
+            ->where('application_deadline', '>', now())
             ->first();
 
         if (!$jobPosition) {
             throw ValidationException::withMessages([
-                'job_position_id' => 'The selected job position is not active.',
+                'job_position_id' => 'The selected job position is already closed or no longer accepting applications.',
             ]);
         }
 

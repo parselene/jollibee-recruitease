@@ -361,10 +361,169 @@
                 font-size: 19px;
             }
         }
+
+
+/* AI REASSESSMENT LOADING SCREEN */
+
+.ai-loading-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(35, 20, 20, 0.78);
+    backdrop-filter: blur(6px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.ai-loading-overlay.active {
+    display: flex;
+}
+
+.ai-loading-card {
+    background: white;
+    width: 100%;
+    max-width: 430px;
+    padding: 38px 30px;
+    border-radius: 22px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    animation: loadingAppear 0.3s ease-out;
+}
+
+.ai-loading-icon {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 22px;
+    border-radius: 22px;
+    background: #FFF0F0;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    animation: aiPulse 1.5s ease-in-out infinite;
+}
+
+.ai-loading-card h4 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 9px;
+    color: var(--text);
+}
+
+.ai-loading-description {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+.ai-progress {
+    height: 7px;
+    background: #F3E8E5;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.ai-progress-bar {
+    height: 100%;
+    width: 35%;
+    border-radius: 20px;
+    background: linear-gradient(
+        90deg,
+        var(--primary),
+        var(--accent)
+    );
+    animation: progressMove 1.5s ease-in-out infinite;
+}
+
+.ai-loading-note {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+@keyframes aiPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(215, 25, 32, 0.15);
+    }
+    50% {
+        transform: scale(1.08);
+        box-shadow: 0 0 0 12px rgba(215, 25, 32, 0);
+    }
+}
+
+@keyframes progressMove {
+    0% {
+        transform: translateX(-110%);
+    }
+    100% {
+        transform: translateX(300%);
+    }
+}
+
+@keyframes loadingAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ai-loading-icon,
+    .ai-progress-bar,
+    .ai-loading-card {
+        animation: none;
+    }
+}
+
     </style>
 </head>
 
 <body>
+
+
+<!-- AI REASSESSMENT LOADING SCREEN -->
+<div class="ai-loading-overlay" id="aiLoadingOverlay">
+
+    <div class="ai-loading-card">
+
+        <div class="ai-loading-icon">
+            <i class="bi bi-stars"></i>
+        </div>
+
+        <h4>Updating Job Position</h4>
+
+        <p class="ai-loading-description">
+            RecruitEase is updating the job requirements and
+            reassessing existing resumes using AI.
+
+            <br><br>
+
+            Please wait while we recalculate candidate match scores.
+            This may take a few moments.
+        </p>
+
+        <div class="ai-progress">
+            <div class="ai-progress-bar"></div>
+        </div>
+
+        <p class="ai-loading-note mb-0">
+            <i class="bi bi-shield-check me-1"></i>
+            Please wait. Do not close or refresh this page.
+        </p>
+
+    </div>
+
+</div>
+
 
 @include('components.hr.sidebar')
 
@@ -393,7 +552,9 @@
             </div>
         @endif
 
-        <form action="{{ route('job-positions.update', $jobPosition) }}" method="POST">
+        <form id="editJobPositionForm"
+      action="{{ route('job-positions.update', $jobPosition) }}"
+      method="POST">
             @csrf
             @method('PUT')
 
@@ -585,6 +746,52 @@
         </footer>
 
     </main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+        // Select the specific Edit Job Position form
+        const form = document.getElementById('editJobPositionForm');
+
+        const loadingOverlay = document.getElementById('aiLoadingOverlay');
+
+        if (!form || !loadingOverlay) {
+            console.error('Edit form or loading overlay not found.');
+            return;
+        }
+
+        const submitButton = form.querySelector('button[type="submit"]');
+
+        form.addEventListener('submit', function (event) {
+
+            // Check browser validation
+            if (!form.checkValidity()) {
+                return;
+            }
+
+            // Prevent multiple submissions
+            if (form.dataset.submitting === 'true') {
+                event.preventDefault();
+                return;
+            }
+
+            form.dataset.submitting = 'true';
+
+            // Show loading screen
+            loadingOverlay.classList.add('active');
+
+            // Disable submit button
+            submitButton.disabled = true;
+
+            submitButton.innerHTML = `
+                <span class="spinner-border spinner-border-sm me-2"></span>
+                Updating...
+            `;
+
+        });
+
+    });
+</script>
 
 </body>
 </html>

@@ -12,7 +12,10 @@ class DashboardController extends Controller
     {
         $totalJobs = JobPosition::count();
 
-        $activeJobs = JobPosition::where('is_active', true)->count();
+        // Count jobs with deadlines that have not yet passed.
+        $activeJobs = JobPosition::whereNotNull('application_deadline')
+            ->where('application_deadline', '>', now())
+            ->count();
 
         $totalApplicants = Applicant::count();
 
