@@ -13,9 +13,17 @@ class ReportController extends Controller
     {
         // Validate report filters
         $validated = $request->validate([
-            'job_position_id' => ['nullable', 'integer', 'exists:job_positions,id'],
+            'job_position_id' => [
+                'nullable',
+                'integer',
+                'exists:job_positions,id'
+            ],
             'date_from' => ['nullable', 'date'],
-            'date_to' => ['nullable', 'date', 'after_or_equal:date_from'],
+            'date_to' => [
+                'nullable',
+                'date',
+                'after_or_equal:date_from'
+            ],
         ]);
 
         $selectedJob = $validated['job_position_id'] ?? null;
@@ -25,16 +33,30 @@ class ReportController extends Controller
         // Base application query
         $applicationQuery = Application::query();
 
+        // Filter by job position
         if ($selectedJob) {
-            $applicationQuery->where('job_position_id', $selectedJob);
+            $applicationQuery->where(
+                'applications.job_position_id',
+                $selectedJob
+            );
         }
 
+        // Filter by starting date
         if ($dateFrom) {
-            $applicationQuery->whereDate('applied_at', '>=', $dateFrom);
+            $applicationQuery->whereDate(
+                'applications.applied_at',
+                '>=',
+                $dateFrom
+            );
         }
 
+        // Filter by ending date
         if ($dateTo) {
-            $applicationQuery->whereDate('applied_at', '<=', $dateTo);
+            $applicationQuery->whereDate(
+                'applications.applied_at',
+                '<=',
+                $dateTo
+            );
         }
 
         // Recruitment overview
@@ -42,22 +64,22 @@ class ReportController extends Controller
 
         $totalApplicants = (clone $applicationQuery)
             ->distinct()
-            ->count('applicant_id');
+            ->count('applications.applicant_id');
 
         $submittedApplications = (clone $applicationQuery)
-            ->where('status', 'submitted')
+            ->where('applications.status', 'submitted')
             ->count();
 
         $underReviewApplications = (clone $applicationQuery)
-            ->where('status', 'under_review')
+            ->where('applications.status', 'under_review')
             ->count();
 
         $shortlistedApplications = (clone $applicationQuery)
-            ->where('status', 'shortlisted')
+            ->where('applications.status', 'shortlisted')
             ->count();
 
         $rejectedApplications = (clone $applicationQuery)
-            ->where('status', 'rejected')
+            ->where('applications.status', 'rejected')
             ->count();
 
         $scheduledInterviews = (clone $applicationQuery)
@@ -68,27 +90,31 @@ class ReportController extends Controller
         $jobQuery = JobPosition::query();
 
         if ($selectedJob) {
-            $jobQuery->where('id', $selectedJob);
+            $jobQuery->where('job_positions.id', $selectedJob);
         }
 
         $totalJobs = (clone $jobQuery)->count();
 
         $openJobs = (clone $jobQuery)
-            ->where('is_active', true)
-            ->whereNotNull('application_deadline')
-            ->where('application_deadline', '>=', now())
+            ->where('job_positions.is_active', true)
+            ->whereNotNull('job_positions.application_deadline')
+            ->where('job_positions.application_deadline', '>=', now())
             ->count();
 
         $closedJobs = (clone $jobQuery)
-            ->where('is_active', true)
+            ->where('job_positions.is_active', true)
             ->where(function ($query) {
-                $query->whereNull('application_deadline')
-                    ->orWhere('application_deadline', '<', now());
+                $query->whereNull('job_positions.application_deadline')
+                    ->orWhere(
+                        'job_positions.application_deadline',
+                        '<',
+                        now()
+                    );
             })
             ->count();
 
         $inactiveJobs = (clone $jobQuery)
-            ->where('is_active', false)
+            ->where('job_positions.is_active', false)
             ->count();
 
         // Application status distribution
@@ -110,11 +136,17 @@ class ReportController extends Controller
         $trendStart = Carbon::now()->subMonths(5)->startOfMonth();
 
         $trendQuery = (clone $applicationQuery)
-            ->where('applied_at', '>=', $trendStart);
+            ->where(
+                'applications.applied_at',
+                '>=',
+                $trendStart
+            );
 
         $monthlyApplications = $trendQuery
-            ->selectRaw("DATE_FORMAT(applied_at, '%Y-%m') as month")
-            ->selectRaw('COUNT(*) as total')
+            ->selectRaw(
+                "DATE_FORMAT(applications.applied_at, '%Y-%m') as month"
+            )
+            ->selectRaw('COUNT(applications.id) as total')
             ->groupBy('month')
             ->orderBy('month')
             ->pluck('total', 'month');
@@ -144,10 +176,20 @@ class ReportController extends Controller
                 '=',
                 'resumes.application_id'
             )
-            ->select('job_positions.id', 'job_positions.title')
-            ->selectRaw('COUNT(applications.id) as total_applications')
-            ->selectRaw('ROUND(AVG(resumes.match_score), 2) as average_match_score')
-            ->groupBy('job_positions.id', 'job_positions.title')
+            ->select(
+                'job_positions.id',
+                'job_positions.title'
+            )
+            ->selectRaw(
+                'COUNT(DISTINCT applications.id) as total_applications'
+            )
+            ->selectRaw(
+                'ROUND(AVG(resumes.match_score), 2) as average_match_score'
+            )
+            ->groupBy(
+                'job_positions.id',
+                'job_positions.title'
+            )
             ->orderByDesc('total_applications')
             ->get();
 
