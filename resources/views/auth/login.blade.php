@@ -724,6 +724,20 @@
 
             </div>
 
+            <!-- FORGOT PASSWORD -->
+
+<div style="text-align: right; margin-top: -12px; margin-bottom: 22px;">
+    <a href="{{ route('password.request') }}"
+       style="
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 700;
+            text-decoration: none;
+       ">
+        Forgot Password?
+    </a>
+</div>
+
 
             <!-- REMEMBER ME -->
 

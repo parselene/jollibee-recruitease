@@ -10,6 +10,7 @@ use App\Http\Controllers\HR\ApplicationManagementController;
 use App\Http\Controllers\HR\ResumeScreeningController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\HR\ResumeUploadController;
+use App\Http\Controllers\Auth\PasswordResetController;
 
 // Main page
 Route::get('/', function () {
@@ -42,6 +43,21 @@ Route::middleware('guest')->group(function () {
 
     Route::post('/applicant/register', [ApplicantAuthController::class, 'register'])
         ->name('applicant.register.store');
+
+    // Password reset
+Route::get('/forgot-password', [PasswordResetController::class, 'create'])
+    ->name('password.request');
+
+Route::post('/forgot-password', [PasswordResetController::class, 'store'])
+    ->middleware('throttle:5,1')
+    ->name('password.email');
+
+Route::get('/reset-password/{token}', [PasswordResetController::class, 'edit'])
+    ->name('password.reset');
+
+Route::post('/reset-password', [PasswordResetController::class, 'update'])
+    ->middleware('throttle:5,1')
+    ->name('password.update');
 });
 
 // HR protected pages
